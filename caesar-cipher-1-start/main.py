@@ -9,13 +9,16 @@ shift = int(input("Type the shift number:\n"))
 
 def encrypt(text_to_encrypt, shift_num):
   cipher_text = ''
-  for position in range (len(text)):
+  for position in range (len(text_to_encrypt)):
     current_char = text_to_encrypt[position]
-    if (current_char != ' '):
+    if (current_char in alphabet):
       current_char_with_shifted_position = alphabet.index(current_char) + shift_num
+      ## Only 26 characters in A to Z = if it is beyond 26, we go back to beginning
+      if current_char_with_shifted_position > 25:
+        current_char_with_shifted_position -= 25
       cipher_text += alphabet[current_char_with_shifted_position]
     else:
-      cipher_text += ' '
+      cipher_text += current_char
     
   print (f"The encoded text is {cipher_text}")
     
